@@ -1,0 +1,541 @@
+/* ======================================
+   Chub Library v1.0 — Polished & Clean
+   ====================================== */
+
+/* === Drawer === */
+#chub-library-drawer {
+    position: fixed;
+    top: 0;
+    right: -520px;
+    width: 520px;
+    height: 100vh;
+    background: rgba(18, 18, 22, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+#chub-library-drawer.open { right: 0; }
+
+/* === Header === */
+.chub-drawer-header {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+}
+
+.chub-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chub-header-left i {
+    font-size: 1.1rem;
+    color: #7c8aff;
+}
+
+.chub-header-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    background: linear-gradient(135deg, #7c8aff, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.chub-close-btn {
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 4px 6px;
+    border-radius: 6px;
+    transition: all 0.2s;
+    color: #888;
+}
+
+.chub-close-btn:hover {
+    background: rgba(255, 60, 60, 0.15);
+    color: #ff6b6b;
+}
+
+/* === Controls === */
+.chub-controls {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* Search */
+.chub-search-row {
+    display: flex;
+    gap: 6px;
+}
+
+.chub-search-row input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+    font-size: 0.85rem;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.chub-search-row input:focus {
+    outline: none;
+    border-color: #7c8aff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.chub-search-row button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #7c8aff, #6366f1);
+    color: white;
+    cursor: pointer;
+    transition: filter 0.2s, transform 0.2s;
+    font-size: 0.85rem;
+}
+
+.chub-search-row button:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+/* Filter Row */
+.chub-filter-row {
+    display: flex;
+    gap: 6px;
+}
+
+.chub-filter-row select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    color: #e0e0e0;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    min-width: 130px;
+    transition: border-color 0.2s;
+}
+
+.chub-filter-row select option {
+    background: #1a1a22;
+    color: #e0e0e0;
+}
+
+.chub-filter-row select:focus {
+    outline: none;
+    border-color: #7c8aff;
+}
+
+/* Tag Chips */
+.chub-tags-chips-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+}
+
+.chub-tags-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    min-height: 30px;
+    align-items: center;
+    cursor: text;
+    transition: border-color 0.2s;
+}
+
+.chub-tags-chips:focus-within {
+    border-color: #7c8aff;
+}
+
+.chub-tags-chips input {
+    flex: 1;
+    min-width: 60px;
+    border: none;
+    background: transparent;
+    color: #e0e0e0;
+    font-size: 0.8rem;
+    padding: 2px 4px;
+    outline: none;
+}
+
+.chub-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(124, 138, 255, 0.2);
+    color: #c0c8ff;
+    border: 1px solid rgba(124, 138, 255, 0.3);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    white-space: nowrap;
+    animation: chipIn 0.2s ease;
+}
+
+@keyframes chipIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+
+.chub-chip-x {
+    cursor: pointer;
+    opacity: 0.6;
+    font-size: 0.65rem;
+    transition: opacity 0.15s;
+    line-height: 1;
+}
+
+.chub-chip-x:hover {
+    opacity: 1;
+    color: #ff6b6b;
+}
+
+/* Autocomplete */
+.chub-tags-autocomplete {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 2px;
+    background: #1a1a24;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    max-height: 160px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.chub-tags-autocomplete.open { display: block; }
+
+.chub-ac-item {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    color: #bbb;
+    transition: background 0.15s, color 0.15s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chub-ac-count {
+    font-size: 0.65rem;
+    color: #666;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+.chub-ac-item:hover,
+.chub-ac-item.active {
+    background: rgba(124, 138, 255, 0.15);
+    color: #e0e0ff;
+}
+
+/* Options Row */
+.chub-options-row {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.chub-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    transition: background 0.2s;
+}
+
+.chub-toggle:hover { background: rgba(255, 255, 255, 0.06); }
+.chub-toggle input { cursor: pointer; accent-color: #7c8aff; }
+
+#chub-toggle-nsfw {
+    color: #ff8a80;
+    border-color: rgba(255, 138, 128, 0.2);
+}
+
+#chub-toggle-nsfl {
+    color: #ffab40;
+    border-color: rgba(255, 171, 64, 0.2);
+}
+
+/* === Results === */
+.chub-results-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    scroll-behavior: smooth;
+}
+
+.chub-results-area::-webkit-scrollbar { width: 5px; }
+.chub-results-area::-webkit-scrollbar-track { background: transparent; }
+.chub-results-area::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+}
+
+/* === Grid === */
+.chub-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+/* === Card === */
+.chub-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s;
+    background: #1a1a22;
+}
+
+.chub-card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.chub-card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+}
+
+/* Card Info */
+.chub-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 6px 6px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+    overflow: hidden;
+}
+
+.chub-card-name {
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+    color: #fff;
+}
+
+.chub-card-stats {
+    font-size: 0.6rem;
+    color: #aaa;
+    margin-top: 2px;
+    display: flex;
+    gap: 8px;
+}
+
+.chub-card-stats i { margin-right: 2px; }
+
+/* Tags — gentle scroll on hover */
+.chub-card-tags {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 3px;
+    margin-top: 3px;
+    overflow: hidden;
+}
+
+.chub-card-tags-inner {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 3px;
+    will-change: transform;
+}
+
+.chub-card:hover .chub-card-tags-inner.scrollable {
+    animation: tagScroll 15s linear infinite;
+}
+
+@keyframes tagScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.chub-tag-pill {
+    background: rgba(124, 138, 255, 0.2);
+    color: #b0b8ff;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 0.52rem;
+    white-space: nowrap;
+    border: 1px solid rgba(124, 138, 255, 0.15);
+    flex-shrink: 0;
+}
+
+/* === Action Buttons === */
+.chub-card-actions {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    display: flex;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.25s, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+.chub-card:hover .chub-card-actions {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chub-action-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: transform 0.2s, background 0.2s;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+}
+
+.chub-action-import { background: rgba(99, 102, 241, 0.85); }
+.chub-action-import:hover {
+    background: rgba(99, 102, 241, 1);
+    transform: scale(1.1);
+}
+
+.chub-action-details { background: rgba(255, 255, 255, 0.15); }
+.chub-action-details:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* Downloading */
+@keyframes pulseGlow {
+    0%   { box-shadow: 0 0 0 0   rgba(124, 138, 255, 0.5); }
+    70%  { box-shadow: 0 0 0 8px rgba(124, 138, 255, 0);   }
+    100% { box-shadow: 0 0 0 0   rgba(124, 138, 255, 0);   }
+}
+
+.chub-downloading {
+    animation: pulseGlow 1.5s infinite;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Spinner */
+.chub-spinner {
+    display: none;
+    text-align: center;
+    padding: 50px 20px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.chub-spinner i {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    display: block;
+    color: #7c8aff;
+}
+
+/* === Empty === */
+.chub-empty-state {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 40px 20px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* ======================================
+   📱 Mobile Responsiveness
+   ====================================== */
+
+/* Tablets & Small Laptops */
+@media screen and (max-width: 600px) {
+    #chub-library-drawer {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .chub-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .chub-card-name {
+        font-size: 0.8rem;
+    }
+
+    .chub-action-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Phones */
+@media screen and (max-width: 400px) {
+    .chub-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chub-controls {
+        padding: 10px;
+    }
+
+    .chub-filter-row {
+        flex-direction: column;
+    }
+
+    .chub-filter-row select {
+        width: 100%;
+    }
+}

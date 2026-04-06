@@ -1,0 +1,54 @@
+<div id="chub-library-drawer" class="chub-drawer">
+    <div class="chub-drawer-header">
+        <div class="chub-header-left">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+            <span class="chub-header-title">Chub Library</span>
+        </div>
+        <div class="chub-close-btn" id="chub-close-drawer">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+
+    <div class="chub-controls">
+        <div class="chub-search-row">
+            <input type="text" id="chub-search-input" placeholder="Search characters…">
+            <button id="chub-search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <div class="chub-filter-row">
+            <select id="chub-sort-dropdown">
+                <option value="default">📈 Trending</option>
+                <option value="download_count">⬇️ Downloads</option>
+                <option value="rating_count">⭐ Top Rated</option>
+                <option value="id">🕒 Newest</option>
+                <option value="random">🎲 Random</option>
+            </select>
+
+            <div class="chub-tags-chips-wrap">
+                <div class="chub-tags-chips" id="chub-tags-chips">
+                    <input type="text" id="chub-tags-input" placeholder="Add tags…" autocomplete="off">
+                </div>
+                <div class="chub-tags-autocomplete" id="chub-tags-autocomplete"></div>
+            </div>
+        </div>
+
+        <div class="chub-options-row">
+            <label class="chub-toggle" id="chub-toggle-nsfw" title="Include NSFW (18+)">
+                <input type="checkbox" id="chub-nsfw-checkbox">
+                <span>NSFW</span>
+            </label>
+            <label class="chub-toggle" id="chub-toggle-nsfl" title="Include NSFL (Extreme)">
+                <input type="checkbox" id="chub-nsfl-checkbox">
+                <span>NSFL</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="chub-results-area" id="chub-results-area">
+        <div class="chub-spinner" id="chub-spinner">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+            <span>Searching…</span>
+        </div>
+        <div class="chub-grid" id="chub-results-grid"></div>
+    </div>
+</div>
